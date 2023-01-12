@@ -1,0 +1,100 @@
+.googleIconPicker__content {
+  background-color: #fefefe;
+  margin: auto auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%; 
+  height: 80%; 
+  position: relative;
+  overflow: hidden;
+}
+
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.googleIconPicker {
+  background: #fcfcfc;
+  /* text-align: center; */
+  padding: 20px;
+  z-index: 100;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: transparent;
+  display: none;
+}
+
+.googleIconPicker.active {
+  display: flex;
+}
+
+.googleIconPicker__iconWrapper {
+  /* border: 1px solid transparent;
+  border-radius: 4px;
+  padding: 3px;
+  cursor: pointer; */
+
+  background: transparent;
+  border: 0;
+  border-radius: 8px;
+  cursor: pointer;
+  height: 128px;
+  position: relative;
+  user-select: none;
+  width: 96px;
+}
+
+.googleIconPicker__iconWrapper:hover {
+  /* border-color: #1a2138; */
+  background-color: rgba(13, 25, 44, 10%);
+}
+
+.googleIconPicker__icon.googleIconPicker__icon {
+  display: block;
+  margin-bottom: 20px;
+}
+
+.googleIconPicker__icons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 11px;
+  overflow: scroll;
+  height: 100%;
+  align-content: flex-start;
+}
+
+.googleIconPicker__close {
+  position: absolute;
+  top: 8px;
+  right: 20px;
+}
+
+.googleIconPicker__searcher {
+  margin-bottom: 20px;
+}
+
+.googleIconPicker__iconName {
+  font-size: 12px;
+}
+
+.googleIconPicker__overlay {
+  background: rgba(0,0,0, 0.2);
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+}
