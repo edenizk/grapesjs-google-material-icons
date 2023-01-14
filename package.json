@@ -1,6 +1,6 @@
 {
   "name": "grapesjs-google-material-icons",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Icon picker block for grapesjs",
   "main": "dist/index.js",
   "files": [
@@ -30,6 +30,7 @@
   "devDependencies": {
     "css-loader": "^6.7.3",
     "grapesjs": "^0.20.3",
-    "grapesjs-cli": "^3.0.1"
+    "grapesjs-cli": "^3.0.1",
+    "style-loader": "^3.3.1"
   }
 }
