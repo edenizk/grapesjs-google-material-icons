@@ -7,11 +7,13 @@
     "dist/"
   ],
   "dependencies": {
-    "material-icons": "^1.13.1"
+    "material-symbols": "^0.4.5"
   },
   "scripts": {
     "build": "grapesjs-cli build",
-    "start": "grapesjs-cli serve"
+    "start": "grapesjs-cli serve",
+    "check": "npm run download:metadata -- --status --dry-run",
+    "download:metadata": "npx @material-design-icons/scripts download metadata --symbols"
   },
   "repository": {
     "type": "git",
@@ -28,6 +30,7 @@
   ],
   "author": "Ergin Deniz Kosecioglu",
   "devDependencies": {
+    "@material-design-icons/scripts": "0.5.1",
     "css-loader": "^6.7.3",
     "grapesjs": "^0.20.3",
     "grapesjs-cli": "^3.0.1",
