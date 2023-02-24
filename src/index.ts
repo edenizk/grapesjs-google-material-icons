@@ -5,6 +5,8 @@ import './iconPicker.css';
 import IEditor from './types/editor';
 
 const plugin = (editor: IEditor, opts = {}) => {
+  const materialIconsUrl = 'https://fonts.googleapis.com/icon?family=Material+Icons'
+
   editor.DomComponents.addType('materialIcons', {
     view: {
       events: {
@@ -21,7 +23,7 @@ const plugin = (editor: IEditor, opts = {}) => {
        * */
       onActive(e: any) {
         console.log('e', e);
-        editor.Commands.run('run:open-icons')
+        editor.Commands.run('open:icon-picker')
         // const modal = document.getElementById('gjs-modal');
         // modal.style.display = 'block';
       },
