@@ -30,7 +30,7 @@ jobs:
       - uses: actions/setup-node@v2
         with:
           node-version: 16
-      - run: npm ci
+      - run: yarn install --force
       - name: Update
         run: |
           force="${{ github.event.inputs.force }}"
@@ -42,7 +42,7 @@ jobs:
 
           # Check for Updates
           status=0
-          npm run check || status=$?
+          yarn check || status=$?
           if [ $status -eq 0 ] || [ $status -eq 4 ]; then
             if [ "$force" != "1" ]; then
               exit 0 # exit if there are no changes or if icons are only removed
@@ -53,12 +53,12 @@ jobs:
           fi
 
           # Update
-          npm run build
+          yarn build
           git add --all
           git commit -m 'Auto Update' || [ "$force" = "1" ] || exit 1
 
           # Bump Version
-          npm version "$bump"
+          yarn version "$bump"
 
           # Push
           if [ "$dry" = "1" ]; then
