@@ -22,7 +22,7 @@ export const iconPickerPopupType = (editor: IEditor) => {
         const closeEl = document.querySelectorAll('.googleIconPicker__close');
         console.log('closeEl', closeEl)
         const iconEls = document.querySelectorAll('.googleIconPicker__icon');
-        const searcherEl = document.querySelector('.googleIconPicker__searcher');
+        const searcherEl = document.querySelector('.googleIconPicker__search');
 
         closeEl.forEach(el => {
           el.addEventListener('click', () => this.close());
@@ -32,14 +32,34 @@ export const iconPickerPopupType = (editor: IEditor) => {
           el.addEventListener('click', () => this.iconSelect(el.innerHTML));
         });
 
+        const selects = document.querySelectorAll<HTMLSelectElement>('.googleIconPicker__customization select');
+
+        selects.forEach(select => {
+          this.setSelectValue(select);
+
+          select.addEventListener('change', event => {
+            const target = event.target as HTMLSelectElement;
+            this.setSelectValue(target)
+          });
+        });
+
         if (searcherEl) {
-          console.log('searcherEl', searcherEl);
           searcherEl.addEventListener('keydown', (e) => this.searcher(e));
         }
       }
     },
+
+    setSelectValue(target: HTMLSelectElement) {
+      if (!target) return;
+
+      const variableName = `--${target.name.toLowerCase()}`;
+      document.documentElement.style.setProperty(
+        variableName,
+        target.value
+      );
+    },
+
     renderList(icons: IIcons) {
-      console.log('icons', icons);
       const iconList = document.querySelector('.googleIconPicker__icons');
 
       if (iconList) {
@@ -49,6 +69,7 @@ export const iconPickerPopupType = (editor: IEditor) => {
         });
       }
     },
+
     create(tag: string) {return document.createElement(tag)},
 
     renderIcon(name: string) {
