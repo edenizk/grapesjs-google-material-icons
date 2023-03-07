@@ -7,6 +7,12 @@ interface IIcons {
 }
 
 export const iconPickerPopupType = (editor: IEditor) => {
+  editor.on('load', () => {
+    console.log('editor', editor.Canvas)
+    const head = editor.Canvas.getDocument().head;
+    head.insertAdjacentHTML('beforeend', `<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">`);
+  });
+
   editor.Commands.add('open:icon-picker', {
     run() {
       console.log('add');
@@ -107,7 +113,6 @@ export const iconPickerPopupType = (editor: IEditor) => {
     },
     searcher(e: Event) {
       const input = e.target as HTMLInputElement;
-      const iconEls = document.querySelectorAll(".googleIconPicker__iconWrapper") as NodeListOf<HTMLLIElement>;
       
       const debouncedSearch = this.debounce(() => {
         const filter = input.value.trim().toLowerCase();
@@ -119,12 +124,6 @@ export const iconPickerPopupType = (editor: IEditor) => {
         
         this.renderList(filteredIcons);
 
-        // iconEls.forEach(iconEl => {
-        //   const item = iconEl.querySelector("span");
-        //   const txtValue = item?.textContent?.trim().toLowerCase();
-        //   console.log('txtValue', txtValue);
-        //   iconEl.style.display = txtValue?.includes(filter) ? "" : "none";
-        // });
       }, 100);
       
       debouncedSearch();
@@ -164,18 +163,6 @@ export const iconPickerPopupType = (editor: IEditor) => {
       }
     },
   })
-
-
-  // editor.DomComponents.addType('iconPicker', {
-  //   view: {
-  //     events: {
-  //       click: 'onActive',
-  //     },
-  //     onActive() {
-  //       editor.Commands.run('icon-picker')
-  //     },
-  //   },
-  // });
 };
 
 export default iconPickerPopupType;
