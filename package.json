@@ -1,11 +1,9 @@
 {
   "name": "grapesjs-google-material-icons",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Icon picker block for grapesjs",
   "main": "dist/index.js",
-  "files": [
-    "dist/"
-  ],
+  "files": ["dist/*"],
   "dependencies": {
     "material-symbols": "^0.4.5"
   },
