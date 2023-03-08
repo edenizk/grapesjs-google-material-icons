@@ -17,7 +17,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/edenizk/grapesjs-google-material-icons"
+    "url": "git+https://github.com/edenizk/grapesjs-google-material-icons.git"
   },
   "keywords": [
     "grapesjs",
@@ -35,5 +35,11 @@
     "grapesjs": "^0.20.3",
     "grapesjs-cli": "^3.0.1",
     "style-loader": "^3.3.1"
-  }
+  },
+  "types": "./dist/index.d.ts",
+  "bugs": {
+    "url": "https://github.com/edenizk/grapesjs-google-material-icons/issues"
+  },
+  "homepage": "https://github.com/edenizk/grapesjs-google-material-icons#readme",
+  "license": "MIT"
 }
