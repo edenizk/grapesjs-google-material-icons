@@ -1,6 +1,9 @@
 import grapesjs from 'grapesjs';
 
-declare const plugin: grapesjs.Plugin;
+export interface IEditor extends grapesjs.Editor {
+	getEl: () => HTMLElement;
+}
+declare const plugin: (editor: IEditor, opts?: {}) => void;
 
 export {
 	plugin as default,
