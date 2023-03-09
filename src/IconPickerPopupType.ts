@@ -8,25 +8,25 @@ interface IIcons {
 
 export const iconPickerPopupType = (editor: IEditor) => {
   editor.on('load', () => {
-    console.log('editor', editor.Canvas)
     const head = editor.Canvas.getDocument().head;
-    head.insertAdjacentHTML('beforeend', `<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">`);
+    head.insertAdjacentHTML('beforeend', `<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />`);
+    document.head.insertAdjacentHTML('beforeend', `<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />`);
   });
 
   editor.Commands.add('open:icon-picker', {
+    getSelects() {
+      const selects = document.querySelectorAll<HTMLSelectElement>('.googleIconPicker__customization select');
+      return selects;
+    },
     run() {
-      console.log('add');
       const editorEl = editor.getEl();
-      console.log('editor', editor)
 
       if (editorEl) {
         editorEl.insertAdjacentHTML('beforebegin', IconPickerPopup(editor));
         
         this.renderList(materialIcons);
 
-        console.log('editorEl', editorEl)
         const closeEl = document.querySelectorAll('.googleIconPicker__close');
-        console.log('closeEl', closeEl)
         const iconEls = document.querySelectorAll('.googleIconPicker__icon');
         const searcherEl = document.querySelector('.googleIconPicker__search');
 
@@ -38,7 +38,7 @@ export const iconPickerPopupType = (editor: IEditor) => {
           el.addEventListener('click', () => this.iconSelect(el.innerHTML));
         });
 
-        const selects = document.querySelectorAll<HTMLSelectElement>('.googleIconPicker__customization select');
+        const selects = this.getSelects();
 
         selects.forEach(select => {
           this.setSelectValue(select);
@@ -117,7 +117,6 @@ export const iconPickerPopupType = (editor: IEditor) => {
       const debouncedSearch = this.debounce(() => {
         const filter = input.value.trim().toLowerCase();
 
-        console.log('filter', filter)
         const filteredIcons = Object.keys(materialIcons)
         .filter((key) => key.includes(filter))
         .reduce((cur, key) => { return Object.assign(cur, { [key]: materialIcons[key as keyof typeof materialIcons] })}, {});
@@ -136,15 +135,26 @@ export const iconPickerPopupType = (editor: IEditor) => {
       if (!selectedComp) return;
   
       const selectedEl = selectedComp.getEl();
-      console.log('selectedEl', selectedEl);
   
       if (selectedEl) {
         selectedEl.innerHTML = icon;
+        const selects = this.getSelects();
+
+        selects.forEach(select => {
+          this.setSelectValue(select);
+
+          const variableName = `--${select.name.toLowerCase()}`;
+
+          selectedEl.style.setProperty(
+            variableName,
+            select.value
+          )
+        });
+
         this.close();
       }
     },
     close() {
-      console.log('stop')
       const picker = document.querySelector('.googleIconPicker');
 
       if (picker) {
@@ -155,7 +165,6 @@ export const iconPickerPopupType = (editor: IEditor) => {
   
   editor.Commands.add('close:icon-picker', {
     run() {
-      console.log('stop')
       const picker = document.querySelector('.googleIconPicker');
 
       if (picker) {

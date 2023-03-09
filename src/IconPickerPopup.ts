@@ -1,11 +1,8 @@
-import type grapesjs from 'grapesjs';
 import 'material-symbols';
 import materialIcons from '../_data/versions.json'
 import IEditor from './types/editor';
 
 const IconPickerPopup = (editor: IEditor) => {
-  console.log('material icons', materialIcons);
-
   return (
     `<div id="googleIconPicker" class="googleIconPicker items-center justify-center" ref={wrapperRef}>
       <div class="googleIconPicker__overlay googleIconPicker__close"></div>
