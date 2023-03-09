@@ -1,4 +1,3 @@
-import 'material-symbols';
 import materialIcons from '../_data/versions.json'
 import IEditor from './types/editor';
 
@@ -55,7 +54,7 @@ const IconPickerPopup = (editor: IEditor) => {
                 class="googleIconPicker__iconWrapper" 
               >
                 <span 
-                  class="googleIconPicker__icon material-symbols-outlined" 
+                  class="googleIconPicker__icon material-icons material-symbols-outlined" 
                   style="font-size: 48px"
                 >
                   ${icon}
