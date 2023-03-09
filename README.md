@@ -1,5 +1,7 @@
 # GrapesJS Google Material Icons Plugin
 
+[Demo](https://codepen.io/edenizk/pen/zYJPmXN?editors=1011)
+
 [![npm](https://img.shields.io/npm/v/grapesjs-google-material-icons.svg)](https://www.npmjs.com/package/grapesjs-google-material-icons)
 
 
