@@ -3494,11 +3494,6 @@ make-dir@^3.0.2, make-dir@^3.1.0:
   dependencies:
     semver "^6.0.0"
 
-material-symbols@^0.4.5:
-  version "0.4.5"
-  resolved "https://registry.yarnpkg.com/material-symbols/-/material-symbols-0.4.5.tgz#d737efcc812740eca0b14e6ad889629576f98a25"
-  integrity sha512-IecrpQW2whLbe4ByN/E3VbDWrQNKO+3FEtCdO7/QmKlTd3Vxt3fHKXLQe7iTS3Svm6fYJEQv+eAxy3WtPNg2Rg==
-
 media-typer@0.3.0:
   version "0.3.0"
   resolved "https://registry.yarnpkg.com/media-typer/-/media-typer-0.3.0.tgz#8710d7af0aa626f8fffa1ce00168545263255748"
