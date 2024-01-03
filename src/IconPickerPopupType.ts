@@ -24,7 +24,7 @@ export const iconPickerPopupType = (editor: IEditor) => {
       console.log('iconEls', iconEls);
 
       iconEls.forEach(el => {
-        el.addEventListener('click', this.iconSelect);
+        el.addEventListener('click', this.iconSelect.bind(this));
       });
     },
 
@@ -32,7 +32,7 @@ export const iconPickerPopupType = (editor: IEditor) => {
       const iconEls = document.querySelectorAll('.googleIconPicker__iconWrapper');
 
       iconEls.forEach(el => {
-        el.removeEventListener('click', this.iconSelect);
+        el.removeEventListener('click', this.iconSelect.bind(this));
       });
     },
 
@@ -147,7 +147,7 @@ export const iconPickerPopupType = (editor: IEditor) => {
       debouncedSearch();
     },
     iconSelect(e: Event) {
-      if (!editor || !editor.getWrapper().view || !e.target) return;
+      if (!editor || !editor.getWrapper() || !e.target) return;
       const icon = (e.target as HTMLElement).querySelector('.googleIconPicker__icon') as Element;
       const selectedComp = editor.getSelected();
   
