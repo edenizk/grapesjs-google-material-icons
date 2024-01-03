@@ -6,7 +6,6 @@
   "files": [
     "dist/*"
   ],
-  "dependencies": {},
   "scripts": {
     "build": "grapesjs-cli build",
     "start": "grapesjs-cli serve",
@@ -28,7 +27,7 @@
   ],
   "author": "Ergin Deniz Kosecioglu",
   "devDependencies": {
-    "@material-design-icons/scripts": "0.5.1",
+    "@material-design-icons/scripts": "^0.2.2",
     "css-loader": "^6.7.3",
     "grapesjs": "^0.21.8",
     "grapesjs-cli": "^3.0.1",
