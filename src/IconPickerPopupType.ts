@@ -100,6 +100,7 @@ export const iconPickerPopupType = (editor: IEditor) => {
       button.setAttribute('aria-label', 'Search Icon');
       button.setAttribute('aria-selected', 'false');
       button.classList.add('googleIconPicker__iconWrapper');
+      button.classList.add('gjs-two-color');
 
       const span1 = document.createElement('span');
       span1.classList.add('googleIconPicker__icon', 'material-symbols-outlined');
