@@ -1,6 +1,6 @@
-import grapesjs from 'grapesjs';
+import { Editor } from 'grapesjs';
 
-export interface IEditor extends grapesjs.Editor {
+export interface IEditor extends Editor {
 	getEl: () => HTMLElement;
 }
 declare const plugin: (editor: IEditor, opts?: {}) => void;
