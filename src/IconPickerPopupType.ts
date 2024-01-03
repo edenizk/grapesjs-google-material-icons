@@ -21,7 +21,6 @@ export const iconPickerPopupType = (editor: IEditor) => {
 
     addIconEvents() {
       const iconEls = document.querySelectorAll('.googleIconPicker__iconWrapper');
-      console.log('iconEls', iconEls);
 
       iconEls.forEach(el => {
         el.addEventListener('click', this.iconSelect.bind(this));
