@@ -9,6 +9,8 @@ const plugin = (editor: IEditor, opts = {}) => {
   editor.DomComponents.addType('materialIcons', {
     view: {
       events: {
+        // TODO: Fix here after this is fixed https://github.com/GrapesJS/grapesjs/blob/9314b57ac91e370bc0adb9ea958e9201dd0a468a/src/asset_manager/view/AssetImageView.ts#L93C16-L93C16
+        // @ts-ignore
         dblclick: 'onActive',
       },
       onActive(e: any) {

@@ -18,6 +18,24 @@ export const iconPickerPopupType = (editor: IEditor) => {
       const selects = document.querySelectorAll<HTMLSelectElement>('.googleIconPicker__customization select');
       return selects;
     },
+
+    addIconEvents() {
+      const iconEls = document.querySelectorAll('.googleIconPicker__iconWrapper');
+      console.log('iconEls', iconEls);
+
+      iconEls.forEach(el => {
+        el.addEventListener('click', this.iconSelect.bind(this));
+      });
+    },
+
+    removeIconEvents() {
+      const iconEls = document.querySelectorAll('.googleIconPicker__iconWrapper');
+
+      iconEls.forEach(el => {
+        el.removeEventListener('click', this.iconSelect.bind(this));
+      });
+    },
+
     run() {
       const editorEl = editor.getEl();
 
@@ -27,16 +45,13 @@ export const iconPickerPopupType = (editor: IEditor) => {
         this.renderList(materialIcons);
 
         const closeEl = document.querySelectorAll('.googleIconPicker__close');
-        const iconEls = document.querySelectorAll('.googleIconPicker__icon');
         const searcherEl = document.querySelector('.googleIconPicker__search');
 
         closeEl.forEach(el => {
           el.addEventListener('click', () => this.close());
         });
-        
-        iconEls.forEach(el => {
-          el.addEventListener('click', () => this.iconSelect(el.innerHTML));
-        });
+
+        this.addIconEvents();
 
         const selects = this.getSelects();
 
@@ -85,6 +100,7 @@ export const iconPickerPopupType = (editor: IEditor) => {
       button.setAttribute('aria-label', 'Search Icon');
       button.setAttribute('aria-selected', 'false');
       button.classList.add('googleIconPicker__iconWrapper');
+      button.classList.add('gjs-two-color');
 
       const span1 = document.createElement('span');
       span1.classList.add('googleIconPicker__icon', 'material-symbols-outlined');
@@ -115,6 +131,8 @@ export const iconPickerPopupType = (editor: IEditor) => {
       const input = e.target as HTMLInputElement;
       
       const debouncedSearch = this.debounce(() => {
+        this.removeIconEvents();
+
         const filter = input.value.trim().toLowerCase();
 
         const filteredIcons = Object.keys(materialIcons)
@@ -122,14 +140,15 @@ export const iconPickerPopupType = (editor: IEditor) => {
         .reduce((cur, key) => { return Object.assign(cur, { [key]: materialIcons[key as keyof typeof materialIcons] })}, {});
         
         this.renderList(filteredIcons);
+        this.addIconEvents();
 
       }, 100);
       
       debouncedSearch();
     },
-    iconSelect(icon: string) {
-      if (!editor || !editor.getWrapper().view) return;
-
+    iconSelect(e: Event) {
+      if (!editor || !editor.getWrapper() || !e.target) return;
+      const icon = (e.target as HTMLElement).querySelector('.googleIconPicker__icon') as Element;
       const selectedComp = editor.getSelected();
   
       if (!selectedComp) return;
@@ -137,7 +156,7 @@ export const iconPickerPopupType = (editor: IEditor) => {
       const selectedEl = selectedComp.getEl();
   
       if (selectedEl) {
-        selectedEl.innerHTML = icon;
+        selectedEl.innerHTML = icon.innerHTML;
         const selects = this.getSelects();
 
         selects.forEach(select => {

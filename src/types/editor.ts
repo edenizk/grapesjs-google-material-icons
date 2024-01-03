@@ -1,6 +1,6 @@
-import type grapesjs from 'grapesjs';
+import {Editor} from 'grapesjs';
 
-interface IEditor extends grapesjs.Editor {
+interface IEditor extends Editor {
   getEl: () => HTMLElement;
 }
 

@@ -1,12 +1,11 @@
 .googleIconPicker__content {
-  background-color: #fefefe;
   margin: auto auto;
-  padding: 20px 20px 40px;
-  border: 1px solid #888;
-  width: 80%; 
+  padding: 0 0 40px;
+  width: 90%; 
   height: 80%; 
   position: relative;
   overflow: hidden;
+  max-width: none;
 }
 
 .close {
@@ -25,7 +24,6 @@
 
 .googleIconPicker {
   background: #fcfcfc;
-  /* text-align: center; */
   padding: 20px;
   z-index: 100;
   position: fixed;
@@ -38,10 +36,6 @@
 }
 
 .googleIconPicker__iconWrapper {
-  /* border: 1px solid transparent;
-  border-radius: 4px;
-  padding: 3px;
-  cursor: pointer; */
   font-variation-settings: 'FILL' var(--fill), 'wght' var(--weight), 'GRAD' var(--grade), 'opsz' var(--opticalsize);
   background: transparent;
   border: 0;
@@ -54,9 +48,12 @@
 }
 
 .googleIconPicker__iconWrapper:hover {
-  /* border-color: #1a2138; */
   background-color: rgba(13, 25, 44, 10%);
 }
+
+.googleIconPicker__iconWrapper > span {
+  pointer-events: none;
+} 
 
 .googleIconPicker__icon.googleIconPicker__icon {
   display: block;
@@ -68,15 +65,18 @@
   display: flex;
   flex-wrap: wrap;
   gap: 11px;
-  overflow: scroll;
+  overflow-y: scroll;
+  overflow-x: hidden;
   height: 100%;
   align-content: flex-start;
+  padding: 10px 8px;
 }
 
 .googleIconPicker__close {
   position: absolute;
   top: 8px;
   right: 20px;
+  z-index: 10;
 }
 
 .googleIconPicker__search {
@@ -103,9 +103,26 @@
   display: flex;
   align-items: center;
   gap: 12px;
+  padding-bottom: 6px;
 }
 
-.googleIconPicker__customization label{
-  margin-right: 6px;
-  margin-left: 12px;
+.googleIconPicker__customization{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.googleIconPicker__customization > div{
+  display: flex;
+  /* flex-wrap: wrap; */
+  gap: 6px;
+  align-items: center;
+}
+
+.googleIconPicker__customization label {
+  white-space: nowrap;
+}
+
+.googleIconPicker__customization .gjs-select {
+  min-width: 50px;
 }
