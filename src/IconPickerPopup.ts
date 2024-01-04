@@ -13,7 +13,22 @@ const IconPickerPopup = (editor: IEditor) => {
             <input type="text" placeholder="Search" autofocus>
           </div>
           <div class="googleIconPicker__customization">
+            <div id="gjs-clm-input-c" data-states-c="">
+              <label>Style</label>
 
+              <div class="gjs-field gjs-select">
+                <span id="gjs-input-holder">
+                  <select id="gjs-clm-states" class="gjs-clm-states" name="style" title="Style">
+                    <option value="material-symbols-outlined">Outlined</option>
+                    <option value="material-symbols-rounded">Rounded</option>
+                    <option value="material-symbols-sharp">Sharp</option>
+                  </select>
+                </span>
+                <div class="gjs-sel-arrow">
+                  <div class="gjs-d-s-arrow"></div>
+                </div>
+              </div>
+            </div>
             
             <div id="gjs-clm-input-c" data-states-c="">
               <label>Fill</label>

@@ -36,6 +36,15 @@ After installing the plugin, you can add it to your GrapesJS instance like this:
 
 Once you have the plugin installed and added to your GrapesJS instance, you can start using it to select and replace icons in your web pages.
 
+In the page you will be using generated page, don't forget to add one or more stylings for the google fonts:
+
+```bash
+      Outlined: "//fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&v=1704404084845",
+      Rounded: "//fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&v=1704404087635",
+      Sharp: "//fonts.googleapis.com/css2?family=Material+Symbols+Sharp:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&v=1704404089108"
+```
+
+
 To select an icon, simply drag and drop a block onto the canvas, and then double click on icon. This will open a dialog box with a list of Google icons that you can choose from. Select the icon you want, and the plugin will replace the existing icon with the new one. Note that the plugin currently only works if you have added the Google Material Icons font to your project, but support for SVG icons is coming soon.
 
 ## Contributing

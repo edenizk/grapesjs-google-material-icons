@@ -64,7 +64,7 @@
 .googleIconPicker__icons {
   display: flex;
   flex-wrap: wrap;
-  gap: 11px;
+  gap: 16px;
   overflow-y: scroll;
   overflow-x: hidden;
   height: 100%;
@@ -124,5 +124,5 @@
 }
 
 .googleIconPicker__customization .gjs-select {
-  min-width: 50px;
+  min-width: 75px;
 }
