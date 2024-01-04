@@ -7,10 +7,22 @@ interface IIcons {
 }
 
 export const iconPickerPopupType = (editor: IEditor) => {
-  editor.on('load', () => {
+  const loadStyling = () => {
     const head = editor.Canvas.getDocument().head;
-    head.insertAdjacentHTML('beforeend', `<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />`);
-    document.head.insertAdjacentHTML('beforeend', `<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />`);
+    const urls = [
+      "//fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&v=1704404084845",
+      "//fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&v=1704404087635",
+      "//fonts.googleapis.com/css2?family=Material+Symbols+Sharp:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&v=1704404089108"
+    ]
+
+    urls.forEach(url => {
+      head.insertAdjacentHTML('beforeend', `<link rel="stylesheet" href="${url}" />`);
+      document.head.insertAdjacentHTML('beforeend', `<link rel="stylesheet" href="${url}" />`);  
+    });
+  }
+
+  editor.on('load', () => {
+    loadStyling()
   });
 
   editor.Commands.add('open:icon-picker', {
@@ -72,11 +84,21 @@ export const iconPickerPopupType = (editor: IEditor) => {
     setSelectValue(target: HTMLSelectElement) {
       if (!target) return;
 
-      const variableName = `--${target.name.toLowerCase()}`;
-      document.documentElement.style.setProperty(
-        variableName,
-        target.value
-      );
+      if (target.name === 'style') {
+        const iconList = document.querySelectorAll('.googleIconPicker__icon');
+
+        iconList.forEach((iconEl) => {
+          iconEl.classList.remove("material-symbols-outlined", "material-symbols-rounded", "material-symbols-sharp");
+          iconEl.classList.add(target.value);
+        })
+      } else {
+        const variableName = `--${target.name.toLowerCase()}`;
+        document.documentElement.style.setProperty(
+          variableName,
+          target.value
+        );
+      }
+
     },
 
     renderList(icons: IIcons) {
@@ -145,6 +167,20 @@ export const iconPickerPopupType = (editor: IEditor) => {
       
       debouncedSearch();
     },
+    setProperty(select: HTMLSelectElement, selectedEl: HTMLElement) {
+      this.setSelectValue(select);
+
+      const variableName = `--${select.name.toLowerCase()}`;
+
+      selectedEl.style.setProperty(
+        variableName,
+        select.value
+      )
+    },
+    setStyle(select: HTMLSelectElement, selectedEl: HTMLElement) {
+      selectedEl.classList.remove("material-symbols-outlined", "material-symbols-rounded", "material-symbols-sharp");
+      selectedEl.classList.add(select.value);
+    },
     iconSelect(e: Event) {
       if (!editor || !editor.getWrapper() || !e.target) return;
       const icon = (e.target as HTMLElement).querySelector('.googleIconPicker__icon') as Element;
@@ -159,14 +195,11 @@ export const iconPickerPopupType = (editor: IEditor) => {
         const selects = this.getSelects();
 
         selects.forEach(select => {
-          this.setSelectValue(select);
-
-          const variableName = `--${select.name.toLowerCase()}`;
-
-          selectedEl.style.setProperty(
-            variableName,
-            select.value
-          )
+          if (select.name === 'style') {
+            this.setStyle(select, selectedEl);
+          } else {
+            this.setProperty(select, selectedEl);
+          }
         });
 
         this.close();
