@@ -1,9 +1,10 @@
+[![npm](https://img.shields.io/npm/v/grapesjs-google-material-icons.svg)](https://www.npmjs.com/package/grapesjs-google-material-icons)
+
 # GrapesJS Google Material Icons Plugin
 
 [Demo](https://codepen.io/edenizk/pen/zYJPmXN?editors=1011)
 
-[![npm](https://img.shields.io/npm/v/grapesjs-google-material-icons.svg)](https://www.npmjs.com/package/grapesjs-google-material-icons)
-
+[GJS Market](https://gjs.market/products/grapesjs-google-material-icons-plugin)
 
 This is a plugin for [GrapesJS](https://grapesjs.com/), a free and open-source web builder that allows you to create web pages using a simple drag-and-drop interface. The GrapesJS Google Icons Plugin lets you easily select and replace icons in your web pages with Google icons.
 
