@@ -33,8 +33,6 @@ const plugin = (editor: IEditor, opts = {}) => {
     </span>`,
   });
 
-
-  // IconPickerPopup();
   IconPickerPopupType(editor);
 };
 
