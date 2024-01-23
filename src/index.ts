@@ -1,6 +1,4 @@
-import IconPickerPopup from './IconPickerPopup';
 import IconPickerPopupType from './IconPickerPopupType';
-// import 'material-icons/iconfont/material-icons.css';
 import './iconPicker.css';
 import IEditor from './types/editor';
 

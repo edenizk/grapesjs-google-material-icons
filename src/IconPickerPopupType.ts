@@ -1,6 +1,7 @@
 import IconPickerPopup from './IconPickerPopup'
 import IEditor from './types/editor';
 import materialIcons from '../_data/versions.json'
+import { Component } from 'grapesjs';
 
 interface IIcons {
   [name: string]: number
@@ -167,19 +168,20 @@ export const iconPickerPopupType = (editor: IEditor) => {
       
       debouncedSearch();
     },
-    setProperty(select: HTMLSelectElement, selectedEl: HTMLElement) {
+    setProperty(select: HTMLSelectElement, selectedComp: Component) {
       this.setSelectValue(select);
 
       const variableName = `--${select.name.toLowerCase()}`;
 
-      selectedEl.style.setProperty(
-        variableName,
-        select.value
-      )
+      const styles = selectedComp.getStyle();
+      selectedComp.setStyle({
+        ...styles,
+        [variableName]: select.value
+      })
     },
-    setStyle(select: HTMLSelectElement, selectedEl: HTMLElement) {
-      selectedEl.classList.remove("material-symbols-outlined", "material-symbols-rounded", "material-symbols-sharp");
-      selectedEl.classList.add(select.value);
+    setStyle(select: HTMLSelectElement, selectedComp: Component) {
+      selectedComp.removeClass(["material-symbols-outlined", "material-symbols-rounded", "material-symbols-sharp"]);
+      selectedComp.addClass(select.value);
     },
     iconSelect(e: Event) {
       if (!editor || !editor.getWrapper() || !e.target) return;
@@ -188,22 +190,20 @@ export const iconPickerPopupType = (editor: IEditor) => {
   
       if (!selectedComp) return;
   
-      const selectedEl = selectedComp.getEl();
   
-      if (selectedEl) {
-        selectedEl.innerHTML = icon.innerHTML;
-        const selects = this.getSelects();
+      selectedComp.components(icon.innerHTML);
 
-        selects.forEach(select => {
-          if (select.name === 'style') {
-            this.setStyle(select, selectedEl);
-          } else {
-            this.setProperty(select, selectedEl);
-          }
-        });
+      const selects = this.getSelects();
 
-        this.close();
-      }
+      selects.forEach(select => {
+        if (select.name === 'style') {
+          this.setStyle(select, selectedComp);
+        } else {
+          this.setProperty(select, selectedComp);
+        }
+      });
+
+      this.close();
     },
     close() {
       const picker = document.querySelector('.googleIconPicker');
