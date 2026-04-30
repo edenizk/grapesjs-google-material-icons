@@ -1,4 +1,5 @@
 [![npm](https://img.shields.io/npm/v/grapesjs-google-material-icons.svg)](https://www.npmjs.com/package/grapesjs-google-material-icons)
+[![BuyMeACoffee](https://raw.githubusercontent.com/pachadotdev/buymeacoffee-badges/main/bmc-white.svg)](https://buymeacoffee.com/dkpix)
 
 # GrapesJS Google Material Icons Plugin
 
